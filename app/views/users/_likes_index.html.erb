@@ -1,0 +1,20 @@
+  <ul class="list-unstyled">
+    <% likes.each do |like| %>
+      <li class="media">
+        <img class="mr-2 rounded" src="<%= gravatar_url(like.user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+        <div>
+          <%= link_to like.user.name, user_path(like.user) %> <span class="text-muted">posted at <%= like.created_at %></span>
+        </div>
+        <div>
+          <p class="mb-0"><%= like.content %></p>
+        </div>
+          <div>
+            <%= link_to 'View profile', user_path(like.user) %>
+            <%=render "likes/like_button", micropost: like%> 
+         </div>
+        </div>
+      </li>
+    <% end %>
+      <%= paginate likes %>
+  </ul>
